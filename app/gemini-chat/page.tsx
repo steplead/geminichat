@@ -1,0 +1,3 @@
+import Link from "next/link";
+export const metadata={title:"Gemini Chat Online - Free AI Conversation Tool",description:"Learn about Gemini Chat online and try an independent AI conversation tool."};
+export default function Page(){return <main className="container section"><p className="eyebrow">Gemini Chat</p><h1>Gemini Chat Online</h1><p className="section-intro">Gemini Chat is an independent online AI conversation tool. Ask questions, explore ideas, write, learn, and continue a conversation in your browser.</p><div className="card" style={{marginTop:24}}><h2>Start chatting</h2><p>Use the <Link href="/">Chat Gemini Online</Link> tool to begin. Free access has daily limits and the service is not operated by Google.</p></div></main>}
