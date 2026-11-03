@@ -1,0 +1,2 @@
+export const metadata={title:"Terms of Service - GeminiChat"};
+export default function Page(){return <main className="container section"><h1>Terms of Service</h1><p className="section-intro">Use this independent AI chat tool lawfully and do not abuse, overload, or attempt to bypass its limits. AI responses may be inaccurate and are not professional legal, medical, financial, or other expert advice. Availability, models, limits, and features may change.</p></main>}
