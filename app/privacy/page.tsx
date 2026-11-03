@@ -1,0 +1,2 @@
+export const metadata={title:"Privacy Policy - GeminiChat"};
+export default function Page(){return <main className="container section"><h1>Privacy Policy</h1><p className="section-intro">This first version does not provide cloud chat history. Messages sent through the chat tool may be processed by the configured AI API provider to generate a response. Do not submit sensitive personal, financial, medical, or confidential information. We may process basic technical data needed for security, rate limiting, analytics, and service operation.</p></main>}
