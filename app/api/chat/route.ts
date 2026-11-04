@@ -54,7 +54,7 @@ export async function POST(req: Request) {
   for (const [key, base, model, name] of providers) {
     if (!key) continue;
     try {
-      return NextResponse.json({ text: await compatibleChat(base, key, model, prompt), model: name });
+      return NextResponse.json({ text: await compatibleChat(base, key, model, prompt) });
     } catch (error) {
       console.error(`[chat] ${name} request failed (${classifyGeminiError(error)})`);
     }
@@ -66,7 +66,7 @@ export async function POST(req: Request) {
       const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
       const model = ai.getGenerativeModel({ model: process.env.GEMINI_MODEL || "gemini-3.8-flash" });
       const result = await model.generateContent(prompt);
-      return NextResponse.json({ text: result.response.text(), model: "gemini" });
+      return NextResponse.json({ text: result.response.text() });
     } catch (error) {
       console.error(`[chat] Gemini request failed (${classifyGeminiError(error)})`);
     }
