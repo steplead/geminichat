@@ -18,6 +18,7 @@
 - 首页 SEO：已补全站点级 canonical、Open Graph 元数据和 WebApplication JSON-LD
 - `/gemini-chat`：已 301 重定向至首页，并从 Sitemap 移除，避免重复意图
 - GA4：已接入 Measurement ID `G-GTQF58TQNL`，代码已部署
+- GEO 基础项：已放行 OAI-SearchBot、ChatGPT-User、GPTBot、ClaudeBot、PerplexityBot；已发布 `/llms.txt`；已加入 Organization、WebSite、WebApplication 结构化数据；已记录首次来源和 AI 来源用户属性
 
 ## 使用原则
 

@@ -2,4 +2,25 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# Allow search and answer engines to read the public site. Private API routes remain blocked.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
 Sitemap: https://geminichat.net/sitemap.xml

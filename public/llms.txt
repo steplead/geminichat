@@ -1,0 +1,25 @@
+# GeminiChat
+
+GeminiChat is an independent online AI chat tool for questions, writing, learning, brainstorming, and coding discussions. It is not affiliated with Google. Free access is available with daily limits and no cloud chat history is provided.
+
+## How it works
+
+1. Open the chat tool and enter a question or task.
+2. Add context, constraints, and follow-up questions to improve the response.
+
+## Pricing and limits
+
+- The public chat currently offers free access with daily usage limits.
+- Availability, provider configuration, models, and limits may change.
+- Do not submit passwords, API keys, confidential business data, medical records, or other sensitive information.
+
+## Key pages
+
+- [Home](https://geminichat.net/): Start an online AI chat conversation.
+- [AI chat use cases](https://geminichat.net/chat-gemini-ai): Explore writing, learning, translation, brainstorming, and coding use cases.
+- [How to use Gemini Chat](https://geminichat.net/how-to-use-gemini-chat): Learn how to write clearer prompts and follow up.
+- [FAQ](https://geminichat.net/gemini-chat-faq): Read answers about privacy, limits, accuracy, and troubleshooting.
+
+## Important distinction
+
+GeminiChat is a third-party interface. It is not the official Google Gemini website and should not be represented as operated or endorsed by Google.
