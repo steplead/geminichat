@@ -12,6 +12,9 @@
 - GSC 属性：已完成 DNS 所有权验证（Google Search Console）
 - GSC Sitemap：`https://geminichat.net/sitemap.xml` 已提交，状态 Success，发现 9 个页面
 - GSC 索引/性能数据：Google 正在处理，暂未产生可用报告
+- 首页 URL 检查：`URL is not on Google`，状态为 `Discovered – currently not indexed`；已触发请求编入索引流程，等待 Google 处理
+- 首页 HTTP 检查：自动跳转至 HTTPS
+- 首页渲染检查：源码/可访问页面均包含 H1 和正文
 - GA4：已接入 Measurement ID `G-GTQF58TQNL`，代码已部署
 
 ## 使用原则
