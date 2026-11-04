@@ -12,6 +12,19 @@ function classifyGeminiError(error: unknown) {
   return "provider_request_failed";
 }
 
+async function compatibleChat(base: string, key: string, model: string, prompt: string) {
+  const response = await fetch(`${base.replace(/\/$/, "")}/chat/completions`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+    body: JSON.stringify({ model, messages: [{ role: "user", content: prompt }], temperature: 0.3 }),
+  });
+  if (!response.ok) throw new Error(`provider_status_${response.status}`);
+  const data = await response.json();
+  const text = data?.choices?.[0]?.message?.content;
+  if (typeof text !== "string" || !text.trim()) throw new Error("provider_empty_response");
+  return text;
+}
+
 export async function POST(req: Request) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   const today = day();
@@ -33,20 +46,32 @@ export async function POST(req: Request) {
 
   counts.set(ip, { day: today, count: used + 1 });
   const prompt = messages.map((m: any) => `${m.role}: ${m.content}`).join("\n");
-  if (!process.env.GEMINI_API_KEY) {
-    console.error("[chat] Gemini configuration missing: GEMINI_API_KEY is not set");
-    return NextResponse.json({ error: "The chat service is temporarily unavailable." }, { status: 503 });
+  const providers = [
+    [process.env.DEEPSEEK_API_KEY, process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com", process.env.DEEPSEEK_MODEL || "deepseek-flash", "deepseek"],
+    [process.env.QWEN_API_KEY, process.env.QWEN_BASE_URL || "https://dashscope.aliyuncs.com/compatible-mode/v1", process.env.QWEN_MODEL || "qwen-turbo", "qwen"],
+  ] as const;
+
+  for (const [key, base, model, name] of providers) {
+    if (!key) continue;
+    try {
+      return NextResponse.json({ text: await compatibleChat(base, key, model, prompt), model: name });
+    } catch (error) {
+      console.error(`[chat] ${name} request failed (${classifyGeminiError(error)})`);
+    }
   }
 
-  try {
-    const { GoogleGenerativeAI } = await import("@google/generative-ai");
-    const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const modelName = process.env.GEMINI_MODEL || "gemini-3.8-flash";
-    const model = ai.getGenerativeModel({ model: modelName });
-    const result = await model.generateContent(prompt);
-    return NextResponse.json({ text: result.response.text(), model: "gemini" });
-  } catch (error) {
-    console.error(`[chat] Gemini request failed (${classifyGeminiError(error)})`);
-    return NextResponse.json({ error: "The chat service is temporarily unavailable." }, { status: 503 });
+  if (process.env.GEMINI_API_KEY) {
+    try {
+      const { GoogleGenerativeAI } = await import("@google/generative-ai");
+      const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+      const model = ai.getGenerativeModel({ model: process.env.GEMINI_MODEL || "gemini-3.8-flash" });
+      const result = await model.generateContent(prompt);
+      return NextResponse.json({ text: result.response.text(), model: "gemini" });
+    } catch (error) {
+      console.error(`[chat] Gemini request failed (${classifyGeminiError(error)})`);
+    }
   }
+
+  console.error("[chat] No configured provider returned a response");
+  return NextResponse.json({ error: "The chat service is temporarily unavailable." }, { status: 503 });
 }
