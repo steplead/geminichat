@@ -16,6 +16,7 @@ GeminiChat is an independent online AI chat tool for questions, writing, learnin
 ## Key pages
 
 - [Home](https://geminichat.net/): Start an online AI chat conversation.
+- [AI Prompt Generator](https://geminichat.net/ai-prompt-generator): Create a clearer prompt for a specific task.
 - [AI chat use cases](https://geminichat.net/chat-gemini-ai): Explore writing, learning, translation, brainstorming, and coding use cases.
 - [How to use Gemini Chat](https://geminichat.net/how-to-use-gemini-chat): Learn how to write clearer prompts and follow up.
 - [FAQ](https://geminichat.net/gemini-chat-faq): Read answers about privacy, limits, accuracy, and troubleshooting.
