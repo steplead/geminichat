@@ -15,6 +15,8 @@
 - 首页 URL 检查：`URL is not on Google`，状态为 `Discovered – currently not indexed`；已触发请求编入索引流程，等待 Google 处理
 - 首页 HTTP 检查：自动跳转至 HTTPS
 - 首页渲染检查：源码/可访问页面均包含 H1 和正文
+- 首页 SEO：已补全站点级 canonical、Open Graph 元数据和 WebApplication JSON-LD
+- `/gemini-chat`：已 301 重定向至首页，并从 Sitemap 移除，避免重复意图
 - GA4：已接入 Measurement ID `G-GTQF58TQNL`，代码已部署
 
 ## 使用原则

@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [{ source: "/gemini-chat", destination: "/", permanent: true }];
+  },
   async headers() {
     return [{
       source: "/:path*",
