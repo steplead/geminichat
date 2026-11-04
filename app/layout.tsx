@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 export const metadata: Metadata = { metadataBase: new URL("https://geminichat.net"), title: "Chat Gemini Online - Free AI Chat Assistant", description: "Chat with Gemini online using a simple independent AI chat assistant. Ask questions, write, learn, code, and explore Gemini chat for free.", robots: { index: true, follow: true } };
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
+export default function RootLayout({children}:{children:React.ReactNode}){const measurementId=process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;return <html lang="en"><body>{children}{measurementId&&<><Script src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`} strategy="afterInteractive"/><Script id="google-analytics" strategy="afterInteractive">{`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${measurementId}',{anonymize_ip:true});`}</Script></>}</body></html>}
