@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free AI Prompt Generator Online",
-  description: "Create a clearer AI prompt for writing, learning, coding, email, and everyday tasks without registration.",
+  title: "AI Prompt Generator – Free Online Prompt Builder",
+  description: "Use an AI prompt generator free online to create clearer prompts for writing, learning, coding, email, and everyday tasks without registration.",
   alternates: { canonical: "/ai-prompt-generator" },
 };
 
