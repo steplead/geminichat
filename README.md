@@ -7,7 +7,7 @@ First-stage MVP for an independent Chat Gemini online tool.
 ```bash
 npm install
 cp .env.example .env.local
-# add GEMINI_API_KEY to .env.local
+# add DEEPSEEK_API_KEY (primary), optionally QWEN_API_KEY or GEMINI_API_KEY
 npm run dev
 ```
 

@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 const limit = 5;
 const counts = new Map<string, { day: string; count: number }>();
 const day = () => new Date().toISOString().slice(0, 10);
+export const runtime = "nodejs";
+export const maxDuration = 30;
 
 function classifyGeminiError(error: unknown) {
   const message = error instanceof Error ? error.message : String(error);
@@ -13,11 +15,15 @@ function classifyGeminiError(error: unknown) {
 }
 
 async function compatibleChat(base: string, key: string, model: string, prompt: string) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20000);
   const response = await fetch(`${base.replace(/\/$/, "")}/chat/completions`, {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
     body: JSON.stringify({ model, messages: [{ role: "user", content: prompt }], temperature: 0.3 }),
+    signal: controller.signal,
   });
+  clearTimeout(timeout);
   if (!response.ok) throw new Error(`provider_status_${response.status}`);
   const data = await response.json();
   const text = data?.choices?.[0]?.message?.content;
